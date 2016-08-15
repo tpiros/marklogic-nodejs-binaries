@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React Tutorial</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-core/browser.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+    class ArtistBox extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          data: []
+        }
+      }
+      loadVideoMetadataFromServer() {
+        $.ajax({
+          url: this.props.url,
+          dataType: 'json',
+          cache: false,
+          success: data => this.setState({data: data}),
+          error: (xhr, status, err) => console.log(this.props.url, status, err.toString())
+        });
+      }
+
+      componentDidMount() {
+        this.loadVideoMetadataFromServer();
+      }
+
+      render() {
+        return (
+          <div className="artistBox">
+            <Artist name="J Balvin" />
+            <ArtistImage src={this.props.uriToImage}/>
+            <Clip metadata={this.state.data} />
+          </div>
+        );
+      }
+    }
+
+    class Clip extends React.Component {
+      constructor() {
+        super();
+        this.uriToVideoClip = '/clips/jbalvin-ay-vamos.mp4'
+      }
+      render() {
+        return (
+          <div className="clipMetadata">
+            <h3>Clips</h3>
+            <p>{this.props.metadata.artist} - {this.props.metadata.title} (from album: {this.props.metadata.album})</p>
+            <video controls preload="auto" width="640" height="360">
+              <source src={this.uriToVideoClip + "?data=content"} type="video/mp4" />
+            </video>
+          </div>
+        );
+      }
+    }
+
+    class Artist extends React.Component {
+      render() {
+        return (
+          <div className="artist">
+            <h1>{this.props.name}</h1>
+          </div>
+        );
+      }
+    }
+
+    class ArtistImage extends React.Component {
+      constructor() {
+        super();
+        this.uriToImage = '/images/jbalvin.jpg';
+      }
+
+      render() {
+        return (
+          <img className="artistImage" src={this.uriToImage} width="100"/>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <ArtistBox url="/clips/jbalvin-ay-vamos.mp4?data=meta" />,
+      document.getElementById('content')
+    );
+    </script>
+  </body>
+</html>

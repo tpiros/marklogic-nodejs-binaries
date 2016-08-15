@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-binary",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "express": "4.14.0",
+    "marklogic": "1.0.5",
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
+    "babel-core": "5.8.38",
+    "jquery": "3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "setup": "node setup.js",
+    "image": "node display-image",
+    "metadata": "node display-metadata",
+    "range": "node stream-range-request",
+    "app": "node server.js"
+  },
+  "author": "Tamas Piros",
+  "license": "MIT"
+}
