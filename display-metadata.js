@@ -18,4 +18,4 @@ http.createServer((req, res) => {
     .result().then(data => res.end(JSON.stringify(data[0].properties)))
     .catch(error => console.log(error));
   }
-}).listen(3000, () => console.log('Magic happens on port 3000. Please open a browser and go to an endpoint that represents a URI for a binary in your MarkLogic database where you have assigned metadata, e.g.: "http://localhost:3000/clips/jbalvin-ay-vamos.mp4"'));
+}).listen(3000, () => console.log('Magic happens on port 3000. Please open a browser and go to an endpoint that represents a URI for a binary in your MarkLogic database where you have assigned metadata, e.g.: "http://localhost:3000/songs/robingrey-thesedays.mp3"'));

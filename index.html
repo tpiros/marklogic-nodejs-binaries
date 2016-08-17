@@ -11,13 +11,14 @@
   <body>
     <div id="content"></div>
     <script type="text/babel">
-    class ArtistBox extends React.Component {
+    class VideoPlayer extends React.Component {
       constructor() {
         super();
         this.state = {
           data: []
         }
       }
+
       loadVideoMetadataFromServer() {
         $.ajax({
           url: this.props.url,
@@ -34,9 +35,7 @@
 
       render() {
         return (
-          <div className="artistBox">
-            <Artist name="J Balvin" />
-            <ArtistImage src={this.props.uriToImage}/>
+          <div className="videoPlayer">
             <Clip metadata={this.state.data} />
           </div>
         );
@@ -46,13 +45,14 @@
     class Clip extends React.Component {
       constructor() {
         super();
-        this.uriToVideoClip = '/clips/jbalvin-ay-vamos.mp4'
+        this.uriToVideoClip = '/clips/bunny.mp4'
       }
       render() {
         return (
           <div className="clipMetadata">
-            <h3>Clips</h3>
-            <p>{this.props.metadata.artist} - {this.props.metadata.title} (from album: {this.props.metadata.album})</p>
+            <h3>Video clip with metadata</h3>
+            <p>Clip title: {this.props.metadata.title}</p>
+            <p>More information: <a href={this.props.metadata.info}>{this.props.metadata.info}</a></p>
             <video controls preload="auto" width="640" height="360">
               <source src={this.uriToVideoClip + "?data=content"} type="video/mp4" />
             </video>
@@ -61,31 +61,8 @@
       }
     }
 
-    class Artist extends React.Component {
-      render() {
-        return (
-          <div className="artist">
-            <h1>{this.props.name}</h1>
-          </div>
-        );
-      }
-    }
-
-    class ArtistImage extends React.Component {
-      constructor() {
-        super();
-        this.uriToImage = '/images/jbalvin.jpg';
-      }
-
-      render() {
-        return (
-          <img className="artistImage" src={this.uriToImage} width="100"/>
-        )
-      }
-    }
-
     ReactDOM.render(
-      <ArtistBox url="/clips/jbalvin-ay-vamos.mp4?data=meta" />,
+      <VideoPlayer url="/clips/bunny.mp4?data=meta" />,
       document.getElementById('content')
     );
     </script>

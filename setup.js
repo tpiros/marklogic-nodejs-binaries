@@ -4,13 +4,13 @@ const db = marklogic.createDatabaseClient(connection);
 const fs = require('fs');
 const http = require('http');
 
-const pathToMusicFile = 'binaries/jbalvin-safari.mp3';
-const pathToImageFile = 'binaries/jbalvin.jpg';
-const pathToClipFile = 'binaries/jbalvin-ay-vamos.mp4';
+const pathToMusicFile = 'binaries/robingrey-thesedays.mp3';
+const pathToImageFile = 'binaries/sanandres.jpg';
+const pathToClipFile = 'binaries/bunny.mp4';
 
-const musicUri = '/songs/jbalvin-safari.mp3';
-const imageUri = '/images/jbalvin.jpg';
-const clipUri = '/clips/jbalvin-ay-vamos.mp4';
+const musicUri = '/songs/robingrey-thesedays.mp3';
+const imageUri = '/images/sanandres.jpg';
+const clipUri = '/clips/bunny.mp4';
 
 const musicReadStream = fs.createReadStream(pathToMusicFile);
 const imageReadStream = fs.createReadStream(pathToImageFile);
@@ -21,9 +21,9 @@ db.documents.write(
     uri: musicUri,
     contentType: 'audio/mpeg',
     properties: {
-      artist: 'J Balvin',
-      title: 'Safari',
-      album: 'Energia'
+      artist: 'Robin Grey',
+      title: 'These Days',
+      album: 'Only The Missle'
     },
     content: musicReadStream
   },
@@ -36,9 +36,8 @@ db.documents.write(
     uri: clipUri,
     contentType: 'video/mp4',
     properties: {
-      artist: 'J Balvin',
-      title: 'Ay Vamos',
-      album: 'La Familia'
+      info: 'https://peach.blender.org/',
+      title: 'Big Buck Bunny',
     },
     content: clipReadStream
   }

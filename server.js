@@ -13,9 +13,8 @@ app.set('port', 3000);
 
 const indexRoute = (req, res) => res.sendFile(__dirname + '/index.html');
 
-// Change these values
-const uriToImage = '/images/jbalvin.jpg';
-const uriToVideoClip = '/clips/jbalvin-ay-vamos.mp4';
+// Change these values if required
+const uriToVideoClip = '/clips/bunny.mp4';
 
 const artistImage = (req, res) => {
   let data = [];
@@ -29,7 +28,7 @@ const artistImage = (req, res) => {
   });
 };
 
-const artistClip = (req, res) => {
+const displayClip = (req, res) => {
   if (req.query.data && req.query.data === 'meta') {
     db.documents.read({
       uris: uriToVideoClip,
@@ -76,7 +75,6 @@ const artistClip = (req, res) => {
 }
 
 router.route('/').get(indexRoute);
-router.route(uriToImage).get(artistImage);
-router.route(uriToVideoClip).get(artistClip);
+router.route(uriToVideoClip).get(displayClip);
 
 app.listen(app.get('port'), () => console.log('Magic happens on port ' + app.get('port') + '. Please make sure that you have updated the URI references in this file.'));

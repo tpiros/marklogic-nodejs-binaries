@@ -49,4 +49,4 @@ http.createServer((req, res) => {
       }
     }).catch((error) => console.log(error));
   }
-}).listen(3000, () => console.log('Magic happens on port 3000. Please open a browser and go to an endpoint that represents a URI in your MarkLogic database, e.g.: "http://localhost:3000/clips/jbalvin-ay-vamos.mp4"'));
+}).listen(3000, () => console.log('Magic happens on port 3000. Please open a browser and go to an endpoint that represents a URI in your MarkLogic database, e.g.: "http://localhost:3000/clips/bunny.mp4"'));
