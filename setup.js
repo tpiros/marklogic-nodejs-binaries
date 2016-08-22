@@ -42,7 +42,5 @@ db.documents.write(
     content: clipReadStream
   }
 )
-.result((response) => response.documents.map((document) =>
-  console.log('Inserted', document.uri))
-)
+.result((response) => response.documents.map((document) => console.log('Inserted', document.uri)))
 .catch((error) => console.log(error));
