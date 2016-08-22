@@ -22,3 +22,5 @@ In order to display the properties metadata assigned to binaries please execute 
 
 ## Example application
 A simple example app is also part of this repository that uses [React](https://facebook.github.io/react/) to give some UI components to the UI. The app tries to showcase in a simple way how to display a video and some metadata from the database.
+
+To start the application execute `npm run app`.
