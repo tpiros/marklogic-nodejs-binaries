@@ -1,3 +1,4 @@
+'use strict';
 const marklogic = require('marklogic');
 const connection = require('./connection');
 const db = marklogic.createDatabaseClient(connection);
